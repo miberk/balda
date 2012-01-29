@@ -1,0 +1,17 @@
+This demo will extract some topics from Reuters corpus. These are some finance/economy news.
+
+To see this running, please download this file first:
+
+http://kdd.ics.uci.edu/databases/reuters21578/reuters21578.tar.gz
+
+and place it into some directory (and keep the file zipped).
+
+Then from the location of the demo.jar file execute this command
+
+java -jar demo.jar /PATH/TO/reuters21578.tar
+
+The program will start parsing the reuters' source file; it will take a couple of minutes.
+
+Then the sampler will start and it will take another few minutes to extract topics. As an output,
+the sampler will print all 100 topics as a collections of tokens, along with their weights (probabilities)
+so that most prominent terms show first.

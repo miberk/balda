@@ -1,0 +1,17 @@
+This is Batch LDA (balda) implementation of the algorithm as described in
+
+http://www.cs.umass.edu/~mimno/papers/fast-topic-model.pdf
+
+The main feature of this algorithm is that it scales very well in terms of the number of topics.
+It is based on Gibbs sampling (and therefore provides high quality of topics), but runs simulation A LOT faster.
+
+In our implementation, we also evaluate in-sample perplexity and use it this as a (optional) stopping criteria
+for simulation. By default, the execution stops once changes in perplexity are under 5e-4.
+
+The main class is SparseGibbsSampler, and token extraction happens in Words and TokenExtractor classes.
+The strategy here is to remove non-alpha numeric characters, stop words, and the extract
+some top terms (in terms of TF/IDF metrics). The example is provided in the 'demo' package.
+
+To simply run this demo, take a look at instructions in 'demo'  directory.
+
+Have fun!
