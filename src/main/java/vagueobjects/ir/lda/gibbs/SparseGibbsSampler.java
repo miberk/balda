@@ -26,7 +26,7 @@ import java.util.Random;
  * <a href="http://www.cs.umass.edu/~mimno/papers/fast-topic-model.pdf">this algorithm</a>.
  * This class also provides in-sample perplexity estimates to control convergence.
  */
-public class SparseGibbsSampler implements Sampler {
+public class SparseGibbsSampler  {
     private static Logger logger = Logger.getLogger(SparseGibbsSampler.class);
     private final int numberOfIterations;
     private final int burnIn;
@@ -346,12 +346,11 @@ public class SparseGibbsSampler implements Sampler {
 
     }
 
-    @Override
+
     public double[][] getPhi() {
         return phi;
     }
 
-    @Override
     public double[][] getTheta() {
         return theta;
     }

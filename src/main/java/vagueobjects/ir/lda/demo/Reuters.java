@@ -17,42 +17,28 @@ package vagueobjects.ir.lda.demo;
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import java.io.*;
 
 import org.apache.commons.compress.archivers.ArchiveEntry;
-import org.apache.commons.compress.archivers.ArchiveInputStream;
-import org.apache.commons.compress.archivers.ArchiveStreamFactory;
-import org.apache.commons.compress.archivers.tar.TarArchiveEntry;
 import org.apache.commons.compress.archivers.tar.TarArchiveInputStream;
-import org.apache.commons.compress.archivers.zip.ZipArchiveInputStream;
 import org.apache.commons.io.IOUtils;
 import org.apache.log4j.BasicConfigurator;
 import org.apache.log4j.Logger;
 import org.w3c.dom.Document;
-import org.w3c.dom.NodeList;
 import org.w3c.dom.Node;
-
+import org.w3c.dom.NodeList;
 import org.w3c.tidy.DOMTextImpl;
 import org.w3c.tidy.Tidy;
-import org.xml.sax.Attributes;
-import org.xml.sax.InputSource;
-import org.xml.sax.SAXException;
-import org.xml.sax.helpers.DefaultHandler;
 import vagueobjects.ir.lda.gibbs.Result;
-import vagueobjects.ir.lda.gibbs.Sampler;
 import vagueobjects.ir.lda.gibbs.SparseGibbsSampler;
 import vagueobjects.ir.lda.tokens.Processor;
 import vagueobjects.ir.lda.tokens.SourceHandler;
 import vagueobjects.ir.lda.tokens.Words;
 
-import javax.xml.parsers.ParserConfigurationException;
-import javax.xml.parsers.SAXParser;
-import javax.xml.parsers.SAXParserFactory;
-import java.nio.CharBuffer;
+import java.io.ByteArrayInputStream;
+import java.io.FileInputStream;
+import java.io.IOException;
 import java.text.DecimalFormat;
-import java.util.Enumeration;
-import java.util.Scanner;
-import java.util.zip.*;
+import java.util.zip.GZIPInputStream;
 
 public class Reuters implements Processor {
     static DecimalFormat df = new DecimalFormat("##.##");
@@ -75,7 +61,7 @@ public class Reuters implements Processor {
         int numTokens = vocabulary.size();
         logger.info("extraction complete");
         long start = System.currentTimeMillis();
-        Sampler sampler = new SparseGibbsSampler(numberOfTopics);
+        SparseGibbsSampler sampler = new SparseGibbsSampler(numberOfTopics);
         sampler.execute(tokensInDocs, numTokens);
         logger.info("simulation complete in " + df.format(1e-3 * (System.currentTimeMillis() - start) / 60.0) + " min");
         Result result = new Result(sampler, vocabulary);

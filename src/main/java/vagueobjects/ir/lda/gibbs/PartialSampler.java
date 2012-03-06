@@ -49,7 +49,8 @@ public class PartialSampler {
      * Sample a single document using test corpus
      *
      * @param tokensInDoc - distribution of tokens in a document
-     * @param phi         - training value
+     * @param phi         - training values for word-topic associations
+     * @return document-topic distribution a for new document
      */
     public double[][] sample(int[] tokensInDoc, double[][] phi) {
         int[][] tokensInDocuments = new int[1][];
@@ -57,7 +58,13 @@ public class PartialSampler {
         return sample(tokensInDocuments,  phi);
     }
 
-
+    /**
+     * Samples several documents using test corpus
+     *
+     * @param tokensInDocuments - distribution of tokens in new documents
+     * @param phi         - training values for word-topic associations
+     * @return document-topic distribution for new documents
+     */
     public double[][] sample(int[][] tokensInDocuments, double[][] phi) {
         // Document-topic associations
 

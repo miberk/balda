@@ -14,7 +14,7 @@ public class GibbsSamplerTest extends TestCase{
 
     public void testBasic(){
         Random random = new Random(10000000000001L);
-        Sampler sampler = new SparseGibbsSampler(2, 10000, 100, 10);
+        SparseGibbsSampler sampler = new SparseGibbsSampler(2, 10000, 100, 10);
         int [][] wordInDocs = new Docs().getWordsInDocs();
         sampler.execute(wordInDocs, 5, random);
 

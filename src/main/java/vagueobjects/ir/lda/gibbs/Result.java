@@ -28,7 +28,7 @@ public class Result {
     public static final int MAX_NUM_TOKENS = 10;
     private final Tuple[][] topicMap;
 
-    public Result(Sampler sampler, Words vocabulary) {
+    public Result(SparseGibbsSampler sampler, Words vocabulary) {
         double[][] phi = sampler.getPhi();
 
         int vocabularySize = vocabulary.size();
